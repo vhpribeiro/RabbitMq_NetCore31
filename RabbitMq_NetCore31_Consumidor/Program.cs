@@ -8,8 +8,8 @@ namespace RabbitMq_NetCore31_Consumidor
         {
             Console.WriteLine("******* Recebendo mensagens **********");
 
-            var clienteRabbitMq = new ClienteRabbitMq();
-            clienteRabbitMq.Consumir();
+            var consumidorRabbitMq = new ClienteRabbitMqConsumidor();
+            consumidorRabbitMq.Consumir();
 
             Console.ReadKey();
         }

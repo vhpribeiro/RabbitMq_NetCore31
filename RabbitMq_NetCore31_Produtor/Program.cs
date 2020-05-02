@@ -8,7 +8,7 @@ namespace RabbitMq_NetCore31_Produtor
         {
             Console.WriteLine("******* Enviando mensagens para o Rabbit **********");
 
-            var clienteRabbitMq = new ClienteRabbitMq();
+            var produtorRabbitMq = new ClienteRabbitMqProdutor();
 
             for (var quantidadeDeMensagensProduzidas = 0;
                 quantidadeDeMensagensProduzidas < 100000;
@@ -17,7 +17,7 @@ namespace RabbitMq_NetCore31_Produtor
                 var mensagem =
                     $"Olá desenvolvedor esta é a mensagem número {quantidadeDeMensagensProduzidas}, enviada à {DateTime.Now}";
 
-                clienteRabbitMq.Publicar(mensagem);
+                produtorRabbitMq.Publicar(mensagem);
 
                 Console.WriteLine("Enviando mensagem = {0}", mensagem);
             }
