@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -40,14 +41,16 @@ namespace RabbitMq_NetCore31_Consumidor
             consumidor.Received += (emissor, evento) =>
             {
                 var corpo = evento.Body.ToArray();
-                var mensagem = Encoding.UTF8.GetString(corpo);
+                var mensagemDaFila = Encoding.UTF8.GetString(corpo);
 
-                if (!string.IsNullOrWhiteSpace(mensagem))
+                if (!string.IsNullOrWhiteSpace(mensagemDaFila))
                 {
+                    var inscricao = JsonConvert.DeserializeObject<InscricaoDto>(mensagemDaFila);
                     _modelo.BasicAck(evento.DeliveryTag, true);
+                    Console.WriteLine("Recebeu a inscrição de {0} de CPF {1} com o número {2} às {3}.", inscricao.NomeDoTitular,
+                        inscricao.CpfDoTitular, inscricao.NumeroDoSorteio, DateTime.Now);
                 }
-
-                Console.WriteLine("Recebeu a mensagem = {0}", mensagem);
+                
             };
 
             _modelo.BasicConsume(NomeDaFila, false, consumidor);

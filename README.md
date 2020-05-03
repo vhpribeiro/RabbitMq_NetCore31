@@ -3,6 +3,9 @@
 ## Objetivo
 Criar um projeto de exemplo para praticar o RabbitMq. Esse projeto teve como base o texto: https://medium.com/@rodolfostopinto97/poc-net-core-rabbitmq-f1fb5d8eb58b
 
+## Contexto da solução
+Vamos suport que estamos desenvolvendo um sistema que faz sorteio de casas habitacionais, e o nosso produtor deve enviar as inscrições das pessoas que querem participar desse sorteio para o nosso consumidor que irá fazer todo o processo de sorteio.
+
 ### Funcionamento
 Para subir a estrtura do Rabbit, basta dar um `docker-compose up` na raiz do projeto, isso irá subir um container com toda a estrutura do Rabbit e da UI dele.
 - Porta `5672` se encontra o Rabbit
